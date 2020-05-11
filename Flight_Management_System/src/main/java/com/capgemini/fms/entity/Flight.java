@@ -1,11 +1,10 @@
 package com.capgemini.fms.entity;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -21,26 +20,22 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert(true)
 
 public class Flight {
-@NotNull(message="Flight Number Is Mandatory")
+//@NotNull(message="Flight Number Is Mandatory")
 @Id
 @Column(name="flight_number")
 @GeneratedValue(strategy = GenerationType.SEQUENCE,generator ="flight_number")
-@SequenceGenerator(sequenceName="flight_number", initialValue=123456,allocationSize=1, name="flight_number")
+@SequenceGenerator(sequenceName="flight_number", initialValue=100,allocationSize=1, name="flight_number")
 private Integer flightNumber;
 
 @NotEmpty(message="Flight Model is Mandatory")
-@Size(min=3, max=25, message="Length can be 3 and 25 chars")
 @Column(name="flight_model")
 private String flightModel;
 
 @NotEmpty(message="Carrier Name is Mandatory")
-@Size(min=3, max=25, message="Length can be 3 and 25 chars")
-@Pattern(regexp="([A-Za-z]+)|([A-Za-z]+[][A-Za-z]+)",message="allow only alphabets and a blank scpace is allowed")
-@Column(name="carrier_name" , length=25)
+@Column(name="carrier_name")
 private String carrierName;
 
 @NotNull(message="Seat Capacity Is Mandatory")
-@Size(min=3, max=25, message="Length should be upto 8 digit")
 @Column(name="seat_capacity")
 private Integer seatCapacity;
 

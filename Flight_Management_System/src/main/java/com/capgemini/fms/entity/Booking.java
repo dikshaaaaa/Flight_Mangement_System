@@ -23,10 +23,11 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert(true)
 
 public class Booking {
-@NotNull(message="Booking Id Is Mandatory")
+//@NotNull(message="Booking Id Is Mandatory")
 @Id
 @Column(name="booking_id")
 @GeneratedValue(strategy = GenerationType.SEQUENCE,generator ="booking_id")
+
 private long bookingId;
 
 @NotNull(message="Ticket Cost Is Mandatory")
@@ -38,13 +39,13 @@ private long ticketCost;
 private int noOfPassengers;
 
 @ManyToOne
-   @JoinColumn(name="User_id", nullable=false)
+   @JoinColumn(name="user_id", nullable=false)
    private User1 user1;
 @OneToMany(mappedBy="booking")
    private List<Passenger> passengerList;
 
 @ManyToOne
-   @JoinColumn(name="flightNumber", nullable=false)
+   @JoinColumn(name="flight_number", nullable=false)
    private Flight flight;
    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
    private LocalDateTime bookingDate;
