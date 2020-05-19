@@ -27,12 +27,13 @@ import com.capgemini.fms.entity.Flight;
 import com.capgemini.fms.exception.BookingException;
 import com.capgemini.fms.service.BookingService;
 
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class BookingController {
 	@Autowired
 	private BookingService bookingservice;
 
-	@CrossOrigin
+	@CrossOrigin 
 	@PostMapping("/addbooking")
 	public ResponseEntity<String> addBooking(@Valid @RequestBody Booking booking, BindingResult br)
 			throws BookingException {
@@ -45,10 +46,10 @@ public class BookingController {
 		}
 		try {
 			bookingservice.addbooking(booking);
-			return new ResponseEntity<String>("Flight added successfully", HttpStatus.OK);
+			return new ResponseEntity<String>("booking done successfully", HttpStatus.OK);
 
 		} catch (DataIntegrityViolationException ex) {
-			throw new BookingException("ID already exists");
+			throw new BookingException("booking already exists");
 		}
 	}
 
